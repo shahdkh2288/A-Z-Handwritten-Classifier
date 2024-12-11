@@ -10,7 +10,6 @@ The dataset is publicly available on Kaggle: [https://www.kaggle.com/datasets/sa
 
 🔧 Requirements
 To run the project, ensure you have the following:
-
 - Python 3.8+
 - Libraries:
    -  numpy
@@ -43,3 +42,9 @@ Test the best model using personalized data (team members' names).
 📊 Results
 The final models will be compared based on their accuracy, confusion matrices, and F1 scores. The best-performing model will be identified and discussed.
 
+🤝 Team Members
+- Shahd Khaled Ahmed
+- Aliaa Adel
+- Alaa Albsuny
+- Nahla Hesham
+- Abdelmonem Tarek

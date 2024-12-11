@@ -2,7 +2,7 @@
 
 A machine learning project to classify handwritten alphabet letters (A-Z) using multiple models, including SVM, Logistic Regression, and Neural Networks. This project is part of the Machine Learning (Fall 2024) course final assignment.
 
-🚀 #Project Overview
+#🚀 Project Overview
 The goal of this project is to build and evaluate various models to classify grayscale images of handwritten alphabets. The dataset consists of 28x28 pixel images for 26 classes (A-Z).
 
 

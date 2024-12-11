@@ -2,13 +2,15 @@
 
 A machine learning project to classify handwritten alphabet letters (A-Z) using multiple models, including SVM, Logistic Regression, and Neural Networks. This project is part of the Machine Learning (Fall 2024) course final assignment.
 
-🚀 Project Overview
+🚀 #Project Overview
 The goal of this project is to build and evaluate various models to classify grayscale images of handwritten alphabets. The dataset consists of 28x28 pixel images for 26 classes (A-Z).
 
-📂 Dataset
+
+📂 #Dataset
 The dataset is publicly available on Kaggle: [https://www.kaggle.com/datasets/sachinpatel21/az-handwritten-alphabets-in-csv-format].
 
-🔧 Requirements
+
+🔧 #Requirements
 To run the project, ensure you have the following:
 - Python 3.8+
 - Libraries:
@@ -18,9 +20,9 @@ To run the project, ensure you have the following:
    -  scikit-learn
    -  tensorflow
 
-🛠️ Features and Tasks
-This project is divided into the following sections:
 
+🛠️ #Features and Tasks
+This project is divided into the following sections:
 1. Data Exploration and Preparation:
 Identify unique classes and visualize their distribution.
 Normalize and preprocess images.
@@ -39,10 +41,12 @@ Design and train two neural networks with different configurations.
 Save and reload the best model for testing.
 Test the best model using personalized data (team members' names).
 
-📊 Results
+
+📊 #Results
 The final models will be compared based on their accuracy, confusion matrices, and F1 scores. The best-performing model will be identified and discussed.
 
-🤝 Team Members
+
+🤝 #Team Members
 - Shahd Khaled Ahmed
 - Aliaa Adel
 - Alaa Albsuny

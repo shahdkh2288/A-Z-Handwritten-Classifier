@@ -7,12 +7,13 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.utils import shuffle
 
 
+
+
 def load_data(csv_path_: str):
     # Load dataset
     data = pd.read_csv(csv_path_)
     # Preview data
     print(data.head())
-
     return data
 
 def split_data(data: pd.DataFrame):
@@ -29,7 +30,7 @@ def show_images(X: pd.DataFrame, y: pd.Series, n_images: int):
     X_images = X.values.reshape(-1, 28, 28)
 
     # Plot the first 10 images
-    plt.figure(figsize=(5, 5))
+    plt.figure(figsize=(10 , 5))
     for i in range(n_images):
         plt.subplot(2, 5, i + 1)
         plt.imshow(X_images[i], cmap="gray")
@@ -57,9 +58,12 @@ def show_classes_info(y: pd.Series):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.show()
 
+#..................................................................
+
+
 
 if __name__ == "__main__":
-    csv_path = r"C:\Users\abdoe\Desktop\workspace\MachineLearning\A_Z Handwritten Data.csv"
+    csv_path = "C:\\Users\\HP\\Downloads\\archive\\A_Z Handwritten Data.csv"
     train_size = 50000  # Number of training examples
     test_size = 10000  # Number of testing examples
 
@@ -76,17 +80,11 @@ if __name__ == "__main__":
     show_images(X, y, 10)
 
     # Normalize pixel values to [0, 1] range by dividing by 255 (max pixel value)
-    X_normalized = X / 255.0
+    X_normalized =  X.to_numpy(dtype="float32") / 255.0
     print(f"\nX_normalized shape: {X_normalized.shape}")
 
-    # # Split the data
-    # X_train = X_normalized[:train_size]
-    # y_train = y[:train_size]
-    # X_test = X_normalized[train_size:train_size + test_size]
-    # y_test = y[train_size:train_size + test_size]
-    #
-    # print(f"\nX_train shape: {X_train.shape}")
-    # print(f"y_train shape: {y_train.shape}")
-    #
-    # print(f"\nX_test shape: {X_test.shape}")
-    # print(f"y_test shape: {y_test.shape}")
+    #...............................................................
+
+
+
+

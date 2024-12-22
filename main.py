@@ -11,6 +11,11 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.utils import shuffle
 from tensorflow.keras.layers import Input
 from tensorflow import keras
+from sklearn.svm import SVC
+from sklearn.metrics import confusion_matrix, classification_report, f1_score, accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.utils import shuffle
+from sklearn.decomposition import PCA
 
 
 def load_data(csv_path_: str):
@@ -207,6 +212,46 @@ def test_NN_with_name(name, model, data, labels):
 plt.show()
 
 # .......................................
+#SVM
+def train_and_evaluate_linear_SVM(X_train, y_train, X_test, y_test):
+    print("\nTraining Linear SVM using SVC...")
+    linear_svm = SVC(kernel="linear", random_state=42)
+    linear_svm.fit(X_train, y_train)
+    y_pred_linear = linear_svm.predict(X_test)
+
+    print("\nLinear SVM Evaluation:")
+    accuracy_linear = accuracy_score(y_test, y_pred_linear)
+    print(f"Accuracy: {accuracy_linear:.4f}")
+    print(classification_report(y_test, y_pred_linear))
+    sns.heatmap(confusion_matrix(y_test, y_pred_linear), annot=True, fmt="d", cmap="Blues")
+    plt.title("Confusion Matrix: Linear SVM")
+    plt.xlabel("Predicted Labels")
+    plt.ylabel("True Labels")
+    plt.show()
+
+    print(f"\nAverage F1 Score: {f1_score(y_test, y_pred_linear, average='weighted'):.4f}")
+
+    # Train and evaluate Non-Linear SVM (RBF kernel)
+
+
+def train_and_evaluate_rbf_SVM(X_train, y_train, X_test, y_test):
+    print("\nTraining Non-Linear SVM using RBF Kernel...")
+    rbf_svm = SVC(kernel="rbf", random_state=42)
+    rbf_svm.fit(X_train, y_train)
+    y_pred_rbf = rbf_svm.predict(X_test)
+
+    print("\nNon-Linear SVM (RBF Kernel) Evaluation:")
+    accuracy_rbf = accuracy_score(y_test, y_pred_rbf)
+    print(f"Accuracy: {accuracy_rbf:.4f}")
+    print(classification_report(y_test, y_pred_rbf))
+    sns.heatmap(confusion_matrix(y_test, y_pred_rbf), annot=True, fmt="d", cmap="Blues")
+    plt.title("Confusion Matrix: Non-Linear SVM (RBF Kernel)")
+    plt.xlabel("Predicted Labels")
+    plt.ylabel("True Labels")
+    plt.show()
+
+    print(f"\nAverage F1 Score: {f1_score(y_test, y_pred_rbf, average='weighted'):.4f}")
+#......................................................................
 
 if __name__ == "__main__":
     csv_path = "../input/az-handwritten-alphabets-in-csv-format/A_Z Handwritten Data.csv"
@@ -266,6 +311,23 @@ if __name__ == "__main__":
     test_NN_with_name(name, best_model, X, y)
     test_NN_with_name(name1, best_model, X, y)
     test_NN_with_name(name2, best_model, X, y)
+    #......................................................
+
+    # Apply PCA to reduce dimensionality
+    print("\nApplying PCA...")
+    pca = PCA(0.95)  # Retain 95% of the variance
+    X_pca = pca.fit_transform(X_normalized)
+    print(f"X_pca shape: {X_pca.shape}")
+    print(f"Explained variance ratio: {np.sum(pca.explained_variance_ratio_):.2f}")
+
+    # Split data into training and testing sets (70% training, 30% testing)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_pca, y, test_size=0.3, random_state=42
+    )
+
+    print(f"\nX_train shape: {X_train.shape}, y_train shape: {y_train.shape}")
+    print(f"X_test shape: {X_test.shape}, y_test shape: {y_test.shape}")
+    train_and_evaluate_rbf_SVM(X_train, y_train, X_test, y_test)
 
 
 
